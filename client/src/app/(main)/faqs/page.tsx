@@ -1,11 +1,7 @@
-import { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
 import { ChevronDown, Search, Mail, Truck, Shield, RotateCcw, Heart, Sparkles, BookOpen } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'FAQs - Frequently Asked Questions',
-  description: 'Find answers to common questions about Kumfora pads, orders, shipping, returns, and period care.',
-};
 
 const faqCategories = [
   { id: 'products', label: 'Products', icon: Sparkles },
@@ -47,7 +43,7 @@ const faqs = {
     { q: 'What helps with period cramps?', a: 'Heat pad on lower abdomen, gentle yoga/stretching, warm bath, staying hydrated, ibuprofen (with parent approval), and magnesium-rich foods (bananas, dark chocolate) can help.' },
   ],
   account: [
-    { q: 'How do I create an account?', a: 'Click "Account" in the header, then "Create Account." Enter your email, create a password, and verify via OTP. You can also create one during checkout.' },
+    { q: 'How do I create an account?', a: 'Click "Account" in the header, then "Create Account." Enter your name, email, phone, and create a password. Verify your email via the link we send you.' },
     { q: 'I forgot my password. What do I do?', a: 'Click "Forgot Password" on the login page. Enter your email, and we\'ll send a reset link. The link expires in 1 hour for security.' },
     { q: 'Can I save multiple addresses?', a: 'Yes! Go to "Addresses" in your account to save home, work, or relative\'s addresses. Set one as default for faster checkout.' },
     { q: 'How do I view my order history?', a: 'All past orders are in "My Orders" in your account. You can view details, track shipments, download invoices, and reorder with one click.' },
@@ -56,6 +52,15 @@ const faqs = {
 };
 
 export default function FAQsPage() {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(`faq-${id}`);
+    if (el) {
+      const headerOffset = 100;
+      const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
     <main className="pt-16">
       {/* Hero */}
@@ -98,6 +103,7 @@ export default function FAQsPage() {
                 key={cat.id}
                 className="btn-ghost px-4 py-2"
                 aria-controls={`faq-${cat.id}`}
+                onClick={() => scrollToSection(cat.id)}
               >
                 <cat.icon className="w-4 h-4" />
                 {cat.label}

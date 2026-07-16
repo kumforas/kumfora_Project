@@ -5,4 +5,5 @@ export const NOTION_DB_IDS = {
   contact: config.notion.contactDbId,
   newsletter: config.notion.newsletterDbId,
   orders: config.notion.ordersDbId,
+  profiles: config.notion.profilesDbId,
 };

@@ -183,3 +183,33 @@ export async function syncOrderToNotion(data: {
     return { success: false, error: msg };
   }
 }
+
+export async function syncProfileToNotion(data: {
+  user_id: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  created_at: string;
+}): Promise<{ success: boolean; error?: string }> {
+  if (!isNotionConfigured()) {
+    return { success: false, error: "Notion not configured" };
+  }
+
+  try {
+    const notion = getNotion();
+    await notion.pages.create({
+      parent: { database_id: NOTION_DB_IDS.profiles },
+      properties: {
+        Name: title(`${data.first_name} ${data.last_name}`.trim() || "Unnamed User"),
+        "User ID": richText(data.user_id),
+        Phone: phone_number(data.phone),
+        Joined: date(data.created_at),
+      },
+    });
+    return { success: true };
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Unknown error";
+    console.error("Notion sync failed (profile):", msg);
+    return { success: false, error: msg };
+  }
+}

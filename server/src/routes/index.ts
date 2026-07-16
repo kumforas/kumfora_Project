@@ -1,4 +1,5 @@
 import { Router } from "express";
+import authRoutes from "./auth.routes";
 import feedbackRoutes from "./feedback.routes";
 import contactRoutes from "./contact.routes";
 import newsletterRoutes from "./newsletter.routes";
@@ -7,6 +8,7 @@ import healthRoutes from "./health.routes";
 
 const router = Router();
 
+router.use("/auth", authRoutes);
 router.use("/feedback", feedbackRoutes);
 router.use("/contact", contactRoutes);
 router.use("/newsletter", newsletterRoutes);

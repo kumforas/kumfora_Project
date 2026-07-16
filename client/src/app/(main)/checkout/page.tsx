@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { CreditCard, Truck, Shield, RotateCcw, Check, ChevronRight, Mail, MapPin, Phone, User, Lock } from 'lucide-react';
+import { Truck, Shield, RotateCcw, Check, ChevronRight, Mail, MapPin, Phone, User, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useCartStore } from '@/lib/store';
 import { Button } from '@/components/ui/Button';
@@ -11,15 +11,18 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { formatPrice, cn } from '@/lib/utils';
 import { SHIPPING_FREE_THRESHOLD, SHIPPING_FLAT_RATE, CHECKOUT_STEPS } from '@/constants';
+import { useAuth } from '@/contexts/AuthContext';
+import { generateWhatsAppUrl } from '@/lib/whatsapp';
 
 const steps = CHECKOUT_STEPS.map((s) => {
-  const icons = { shipping: Truck, payment: CreditCard, review: Shield } as const;
+  const icons = { shipping: Truck, payment: MessageCircle, review: Shield } as const;
   return { ...s, icon: icons[s.id as keyof typeof icons] };
 });
 
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, getSubtotal, clearCart } = useCartStore();
+  const { user, loading: authLoading } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     email: '',
@@ -32,10 +35,6 @@ export default function CheckoutPage() {
     pincode: '',
     country: 'India',
     paymentMethod: 'cod',
-    cardNumber: '',
-    cardExpiry: '',
-    cardCvv: '',
-    cardName: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isProcessing, setIsProcessing] = useState(false);
@@ -47,12 +46,41 @@ export default function CheckoutPage() {
   const total = subtotal + shipping;
 
   useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/login?redirect=/checkout');
+    }
+  }, [user, authLoading, router]);
+
+  useEffect(() => {
     if (items.length === 0) {
       router.push('/cart');
     }
   }, [items.length, router]);
 
-  if (items.length === 0) {
+  useEffect(() => {
+    if (user) {
+      setFormData((prev) => ({
+        ...prev,
+        email: user.email || prev.email,
+        firstName: user.user_metadata?.first_name || prev.firstName,
+        lastName: user.user_metadata?.last_name || prev.lastName,
+        phone: user.user_metadata?.phone || prev.phone,
+      }));
+    }
+  }, [user]);
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-kumfora-cream/30">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-kumfora-terracotta border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-body text-kumfora-gray">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user || items.length === 0) {
     return null;
   }
 
@@ -71,16 +99,6 @@ export default function CheckoutPage() {
       if (!formData.state) newErrors.state = 'State is required';
       if (!formData.pincode) newErrors.pincode = 'Pincode is required';
       else if (!/^\d{6}$/.test(formData.pincode)) newErrors.pincode = 'Invalid pincode';
-    }
-
-    if (step === 1 && formData.paymentMethod === 'card') {
-      if (!formData.cardNumber) newErrors.cardNumber = 'Card number is required';
-      else if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, ''))) newErrors.cardNumber = 'Invalid card number';
-      if (!formData.cardExpiry) newErrors.cardExpiry = 'Expiry date is required';
-      else if (!/^\d{2}\/\d{2}$/.test(formData.cardExpiry)) newErrors.cardExpiry = 'Invalid format (MM/YY)';
-      if (!formData.cardCvv) newErrors.cardCvv = 'CVV is required';
-      else if (!/^\d{3}$/.test(formData.cardCvv)) newErrors.cardCvv = 'Invalid CVV';
-      if (!formData.cardName) newErrors.cardName = 'Name on card is required';
     }
 
     setErrors(newErrors);
@@ -126,7 +144,28 @@ export default function CheckoutPage() {
         throw new Error(result.error || 'Failed to place order');
       }
 
-      setOrderId(result.data.order_id);
+      const newOrderId = result.data.order_id;
+
+      // Open WhatsApp with order details
+      const whatsappUrl = generateWhatsAppUrl({
+        orderId: newOrderId,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        pincode: formData.pincode,
+        paymentMethod: formData.paymentMethod,
+        items,
+        subtotal,
+        shipping,
+        total,
+      });
+      window.open(whatsappUrl, '_blank');
+
+      setOrderId(newOrderId);
       clearCart();
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
@@ -192,7 +231,7 @@ export default function CheckoutPage() {
                   </h2>
                   <p className="text-body text-kumfora-gray mt-1">
                     {currentStep === 0 && 'Where should we send your order?'}
-                    {currentStep === 1 && 'How would you like to pay?'}
+                    {currentStep === 1 && 'Confirm your payment method'}
                     {currentStep === 2 && 'Please review your order before placing it.'}
                   </p>
                 </header>
@@ -202,7 +241,7 @@ export default function CheckoutPage() {
                 )}
 
                 {currentStep === 1 && (
-                  <PaymentForm formData={formData} errors={errors} onChange={handleInputChange} />
+                  <PaymentForm />
                 )}
 
                 {currentStep === 2 && (
@@ -226,7 +265,7 @@ export default function CheckoutPage() {
                       Continue <ChevronRight className="w-4 h-4" />
                     </Button>
                   ) : (
-                    <Button type="submit" size="lg" disabled={isProcessing} leftIcon={<Lock className="w-5 h-5" />}>
+                    <Button type="submit" size="lg" disabled={isProcessing} leftIcon={<MessageCircle className="w-5 h-5" />}>
                       {isProcessing ? 'Placing Order...' : `Place Order — ${formatPrice(total)}`}
                     </Button>
                   )}
@@ -395,128 +434,31 @@ function ShippingForm({
   );
 }
 
-function PaymentForm({
-  formData,
-  errors,
-  onChange,
-}: {
-  formData: any;
-  errors: Record<string, string>;
-  onChange: (field: string, value: string) => void;
-}) {
+function PaymentForm() {
   return (
     <div className="space-y-6">
       <h3 className="text-heading-sm font-medium text-kumfora-charcoal">Payment Method</h3>
 
-      <div className="space-y-3" role="radiogroup" aria-label="Payment method">
-        <label className={cn(
-          'relative flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all',
-          formData.paymentMethod === 'cod'
-            ? 'border-kumfora-terracotta bg-kumfora-blush/30'
-            : 'border-kumfora-lightGray hover:border-kumfora-rose'
-        )}>
-          <input
-            type="radio"
-            name="paymentMethod"
-            value="cod"
-            checked={formData.paymentMethod === 'cod'}
-            onChange={(e) => onChange('paymentMethod', e.target.value)}
-            className="sr-only"
-          />
-          <div className="absolute inset-0 rounded-xl bg-kumfora-terracotta/5 opacity-0" aria-hidden="true" />
-          <div className="relative flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-kumfora-blush flex items-center justify-center">
-              <span className="text-body-sm font-bold text-kumfora-terracotta">COD</span>
-            </div>
-            <div>
-              <p className="font-medium text-kumfora-charcoal">Cash on Delivery</p>
-              <p className="text-body-sm text-kumfora-gray">Pay when you receive your order</p>
-            </div>
+      <div className="relative flex items-center p-4 rounded-xl border-2 border-kumfora-terracotta bg-kumfora-blush/30">
+        <div className="relative flex items-center gap-4">
+          <div className="w-10 h-10 rounded-lg bg-kumfora-blush flex items-center justify-center">
+            <span className="text-body-sm font-bold text-kumfora-terracotta">COD</span>
           </div>
-          <div className={cn(
-            'absolute right-4 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all',
-            formData.paymentMethod === 'cod'
-              ? 'border-kumfora-terracotta bg-kumfora-terracotta'
-              : 'border-kumfora-lightGray'
-          )}>
-            {formData.paymentMethod === 'cod' && <Check className="w-4 h-4 text-white" />}
-          </div>
-        </label>
-
-        <label className={cn(
-          'relative flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all',
-          formData.paymentMethod === 'card'
-            ? 'border-kumfora-terracotta bg-kumfora-blush/30'
-            : 'border-kumfora-lightGray hover:border-kumfora-rose'
-        )}>
-          <input
-            type="radio"
-            name="paymentMethod"
-            value="card"
-            checked={formData.paymentMethod === 'card'}
-            onChange={(e) => onChange('paymentMethod', e.target.value)}
-            className="sr-only"
-          />
-          <div className="relative flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-kumfora-blush flex items-center justify-center">
-              <CreditCard className="w-5 h-5 text-kumfora-terracotta" />
-            </div>
-            <div>
-              <p className="font-medium text-kumfora-charcoal">Credit / Debit Card</p>
-              <p className="text-body-sm text-kumfora-gray">Secure payment via Razorpay</p>
-            </div>
-          </div>
-          <div className={cn(
-            'absolute right-4 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all',
-            formData.paymentMethod === 'card'
-              ? 'border-kumfora-terracotta bg-kumfora-terracotta'
-              : 'border-kumfora-lightGray'
-          )}>
-            {formData.paymentMethod === 'card' && <Check className="w-4 h-4 text-white" />}
-          </div>
-        </label>
-      </div>
-
-      {formData.paymentMethod === 'card' && (
-        <div className="space-y-4 pt-4 border-t border-kumfora-lightGray/50">
-          <h4 className="text-heading-sm font-medium text-kumfora-charcoal">Card Details</h4>
-          <Input
-            label="Card Number"
-            value={formData.cardNumber}
-            onChange={(e) => onChange('cardNumber', e.target.value.replace(/\D/g, '').slice(0, 16))}
-            error={errors.cardNumber}
-            placeholder="1234 5678 9012 3456"
-            maxLength={19}
-            leftIcon={<CreditCard className="w-5 h-5" />}
-          />
-          <div className="grid sm:grid-cols-3 gap-4">
-            <Input
-              label="Expiry (MM/YY)"
-              value={formData.cardExpiry}
-              onChange={(e) => onChange('cardExpiry', e.target.value.replace(/\D/g, '').slice(0, 4).replace(/(\d{2})(\d{2})/, '$1/$2'))}
-              error={errors.cardExpiry}
-              placeholder="12/25"
-              maxLength={5}
-            />
-            <Input
-              label="CVV"
-              type="password"
-              value={formData.cardCvv}
-              onChange={(e) => onChange('cardCvv', e.target.value.replace(/\D/g, '').slice(0, 3))}
-              error={errors.cardCvv}
-              placeholder="123"
-              maxLength={3}
-            />
-            <Input
-              label="Name on Card"
-              value={formData.cardName}
-              onChange={(e) => onChange('cardName', e.target.value)}
-              error={errors.cardName}
-              placeholder="Jane Doe"
-            />
+          <div>
+            <p className="font-medium text-kumfora-charcoal">Cash on Delivery</p>
+            <p className="text-body-sm text-kumfora-gray">Pay when you receive your order</p>
           </div>
         </div>
-      )}
+        <div className="absolute right-4 w-6 h-6 rounded-full border-2 border-kumfora-terracotta bg-kumfora-terracotta flex items-center justify-center">
+          <Check className="w-4 h-4 text-white" />
+        </div>
+      </div>
+
+      <div className="p-4 rounded-xl bg-kumfora-sageLight/50 border border-kumfora-sage/20">
+        <p className="text-body-sm text-kumfora-sage">
+          After placing your order, we&apos;ll connect with you on WhatsApp to confirm and process your payment.
+        </p>
+      </div>
     </div>
   );
 }
@@ -550,12 +492,7 @@ function ReviewForm({
         </div>
         <div>
           <h4 className="text-heading-sm font-medium text-kumfora-charcoal mb-3">Payment Method</h4>
-          <p className="text-body text-kumfora-slate">
-            {formData.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Credit / Debit Card'}
-          </p>
-          {formData.paymentMethod === 'card' && (
-            <p className="text-body-sm text-kumfora-gray mt-1">Ending in {formData.cardNumber.slice(-4)}</p>
-          )}
+          <p className="text-body text-kumfora-slate">Cash on Delivery</p>
         </div>
       </div>
 
@@ -596,11 +533,13 @@ function OrderSuccess({ orderId, onContinue }: { orderId: string; onContinue: ()
         </div>
         <h1 className="text-display-md font-display font-medium text-kumfora-charcoal mb-3">Order Placed!</h1>
         <p className="text-body-lg text-kumfora-slate mb-2">Thank you for your order.</p>
-        <p className="text-body text-kumfora-gray mb-6">Your order ID is <strong className="text-kumfora-charcoal">{orderId}</strong></p>
-        <p className="text-body-sm text-kumfora-gray mb-8">A confirmation email has been sent to your email address.</p>
-        <Button onClick={onContinue} size="lg" className="w-full sm:w-auto">
-          Continue Shopping
-        </Button>
+        <p className="text-body text-kumfora-gray mb-2">Your order ID is <strong className="text-kumfora-charcoal">{orderId}</strong></p>
+        <p className="text-body-sm text-kumfora-gray mb-6">We&apos;ve opened WhatsApp to confirm your order. If it didn&apos;t open, you can message us manually.</p>
+        <div className="space-y-3">
+          <Button onClick={onContinue} size="lg" className="w-full sm:w-auto">
+            Continue Shopping
+          </Button>
+        </div>
       </div>
     </div>
   );

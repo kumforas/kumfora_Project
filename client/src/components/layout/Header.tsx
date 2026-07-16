@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { ShoppingBag, Menu, X, Search, User, Heart } from "lucide-react";
+import { ShoppingBag, Menu, X, Search, User, Heart, LogOut } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,6 +18,7 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
   const itemCount = getItemCount();
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -115,14 +117,42 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
               <Heart className="w-5 h-5" />
               <span className="tooltip">Wishlist</span>
             </Link>
-            <Link
-              href="/account"
-              className="tooltip-wrapper btn-ghost p-3"
-              aria-label="My Account"
-            >
-              <User className="w-5 h-5" />
-              <span className="tooltip">Account</span>
-            </Link>
+            {user ? (
+              <div className="relative group">
+                <Link
+                  href="/account"
+                  className="tooltip-wrapper btn-ghost p-3 flex items-center gap-1"
+                  aria-label="My Account"
+                >
+                  <User className="w-5 h-5" />
+                  <span className="text-body-sm font-medium hidden lg:inline max-w-[80px] truncate">
+                    {user.user_metadata?.first_name || user.email?.split('@')[0]}
+                  </span>
+                </Link>
+                <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                  <div className="bg-white rounded-xl shadow-lg border border-kumfora-lightGray p-2 min-w-[160px]">
+                    <Link href="/account" className="flex items-center gap-2 px-3 py-2 text-body-sm text-kumfora-charcoal hover:bg-kumfora-blush rounded-lg transition-colors">
+                      <User className="w-4 h-4" /> My Account
+                    </Link>
+                    <button
+                      onClick={() => signOut()}
+                      className="flex items-center gap-2 px-3 py-2 text-body-sm text-kumfora-rose hover:bg-kumfora-rose/10 rounded-lg transition-colors w-full text-left"
+                    >
+                      <LogOut className="w-4 h-4" /> Sign Out
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="tooltip-wrapper btn-ghost p-3"
+                aria-label="Sign In"
+              >
+                <User className="w-5 h-5" />
+                <span className="tooltip">Sign In</span>
+              </Link>
+            )}
             <button
               onClick={openCart}
               className="tooltip-wrapper relative btn-ghost p-3"
@@ -215,16 +245,40 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
                 ))}
               </ul>
               <div className="mt-8 pt-6 border-t border-kumfora-rose/10 space-y-3">
-                <Link
-                  href="/account"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center gap-4 px-5 py-4 rounded-2xl text-body font-semibold text-kumfora-slate hover:bg-kumfora-blush/50 hover:text-kumfora-hotPink transition-colors"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-kumfora-blush flex items-center justify-center">
-                    <User className="w-5 h-5 text-kumfora-hotPink" />
-                  </div>
-                  My Account
-                </Link>
+                {user ? (
+                  <>
+                    <Link
+                      href="/account"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center gap-4 px-5 py-4 rounded-2xl text-body font-semibold text-kumfora-slate hover:bg-kumfora-blush/50 hover:text-kumfora-hotPink transition-colors"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-kumfora-blush flex items-center justify-center">
+                        <User className="w-5 h-5 text-kumfora-hotPink" />
+                      </div>
+                      {user.user_metadata?.first_name || 'My Account'}
+                    </Link>
+                    <button
+                      onClick={() => { signOut(); setIsMenuOpen(false); }}
+                      className="flex items-center gap-4 px-5 py-4 rounded-2xl text-body font-semibold text-kumfora-rose hover:bg-kumfora-rose/10 transition-colors w-full text-left"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-kumfora-rose/10 flex items-center justify-center">
+                        <LogOut className="w-5 h-5 text-kumfora-rose" />
+                      </div>
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center gap-4 px-5 py-4 rounded-2xl text-body font-semibold text-kumfora-slate hover:bg-kumfora-blush/50 hover:text-kumfora-hotPink transition-colors"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-kumfora-blush flex items-center justify-center">
+                      <User className="w-5 h-5 text-kumfora-hotPink" />
+                    </div>
+                    Sign In
+                  </Link>
+                )}
                 <Link
                   href="/wishlist"
                   onClick={() => setIsMenuOpen(false)}

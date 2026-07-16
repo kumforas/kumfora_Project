@@ -41,6 +41,18 @@ export interface CartState {
   getSubtotal: () => number;
 }
 
+// ─── Auth Types ─────────────────────────────────────────────────────────────
+
+export interface User {
+  id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  avatar_url: string | null;
+  created_at: string;
+}
+
 // ─── Database Entity Types ──────────────────────────────────────────────────
 
 export interface Order {

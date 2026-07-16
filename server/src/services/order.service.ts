@@ -18,6 +18,7 @@ export class OrderService {
     const row = {
       order_id: orderId,
       ...input,
+      user_id: input.user_id || null,
       items: JSON.stringify(input.items),
       status: "pending",
       created_at: now,

@@ -78,6 +78,7 @@ export class OrderController {
         subtotal,
         shipping,
         total,
+        user_id: req.user?.userId,
       };
 
       const result = await OrderService.create(input);

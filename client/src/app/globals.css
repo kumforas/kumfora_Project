@@ -23,7 +23,7 @@
   h6 { @apply text-heading-md; }
 
   ::selection {
-    @apply bg-kumfora-pink/30 text-kumfora-charcoal;
+    @apply bg-kumfora-hotPink/60 text-white;
   }
 
   :focus-visible {

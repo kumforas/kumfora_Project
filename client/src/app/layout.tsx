@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Quicksand, Playfair_Display } from 'next/font/google';
+import { AuthProvider } from '@/contexts/AuthContext';
 import './globals.css';
 
 const quicksand = Quicksand({
@@ -67,7 +68,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans text-kumfora-charcoal bg-kumfora-cream antialiased">
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

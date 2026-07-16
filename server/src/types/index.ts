@@ -10,6 +10,31 @@ export interface CartItem {
   quantity: number;
 }
 
+// ─── Auth Types ─────────────────────────────────────────────────────────────
+
+export interface User {
+  id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
+  avatar_url: string | null;
+  created_at: string;
+}
+
+export interface AuthPayload {
+  userId: string;
+  email: string;
+}
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: AuthPayload;
+    }
+  }
+}
+
 // ─── Database Entity Types ──────────────────────────────────────────────────
 
 export interface FeedbackRecord {
@@ -96,6 +121,7 @@ export interface OrderInput {
   subtotal: number;
   shipping: number;
   total: number;
+  user_id?: string;
 }
 
 // ─── API Response Types ─────────────────────────────────────────────────────
