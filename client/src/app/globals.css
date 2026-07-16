@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-kumfora-lightGray;
+  }
+
+  body {
+    @apply font-sans text-body text-kumfora-charcoal bg-kumfora-cream;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold text-kumfora-charcoal;
+  }
+
+  h1 { @apply text-display-xl; }
+  h2 { @apply text-display-lg; }
+  h3 { @apply text-display-md; }
+  h4 { @apply text-display-sm; }
+  h5 { @apply text-heading-lg; }
+  h6 { @apply text-heading-md; }
+
+  ::selection {
+    @apply bg-kumfora-pink/30 text-kumfora-charcoal;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-kumfora-pink ring-offset-2;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-kumfora-cream;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-kumfora-rose rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-kumfora-pink;
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-3xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-body font-semibold rounded-2xl
+           bg-kumfora-hotPink text-white 
+           hover:bg-kumfora-deepPink 
+           shadow-sm
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kumfora-pink focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-body font-semibold rounded-2xl
+           bg-white text-kumfora-charcoal border-2 border-kumfora-rose/30
+           hover:bg-kumfora-blush hover:border-kumfora-pink hover:text-kumfora-hotPink
+           shadow-soft
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kumfora-pink focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-body font-medium rounded-xl
+           bg-transparent text-kumfora-charcoal
+           hover:bg-kumfora-blush/50 hover:text-kumfora-hotPink
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kumfora-pink focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-link {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-body font-medium
+           bg-transparent text-kumfora-hotPink hover:text-kumfora-deepPink
+           underline-offset-4 hover:underline
+           transition-colors duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kumfora-pink focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 text-body text-kumfora-charcoal bg-white
+           border-2 border-kumfora-rose/20 rounded-2xl
+           placeholder:text-kumfora-gray
+           transition-colors duration-200
+           focus:border-kumfora-pink focus:ring-4 focus:ring-kumfora-pink/10 focus:outline-none
+           hover:border-kumfora-rose/40
+           disabled:bg-kumfora-lightGray/50 disabled:cursor-not-allowed;
+  }
+
+  .label {
+    @apply block text-body-sm font-semibold text-kumfora-charcoal mb-2;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-kumfora-rose/10 
+           shadow-card
+           transition-shadow duration-200
+           hover:shadow-card-hover;
+  }
+
+  .card-static {
+    @apply bg-white rounded-2xl border border-kumfora-rose/10 shadow-card;
+  }
+
+  .divider {
+    @apply h-px bg-kumfora-lightGray;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 mx-2 rounded-full text-caption font-semibold;
+  }
+
+  .badge-primary {
+    @apply bg-kumfora-hotPink text-white px-2 rounded-full mx-2;
+  }
+
+  .badge-secondary {
+    @apply bg-kumfora-blush text-kumfora-hotPink;
+  }
+
+  .tooltip-wrapper {
+    @apply relative;
+  }
+
+  .tooltip-wrapper .tooltip {
+    @apply absolute left-1/2 top-full mt-2 -translate-x-1/2 -translate-y-1
+            px-3 py-1.5 rounded-lg text-caption font-semibold
+            bg-kumfora-hotPink text-white whitespace-nowrap
+            opacity-0 scale-95 pointer-events-none
+            transition-all duration-200 ease-out
+            z-50;
+  }
+
+  .tooltip-wrapper .tooltip::after {
+    content: '';
+    @apply absolute left-1/2 -top-2 -translate-x-1/2
+            border-4 border-transparent border-b-kumfora-hotPink;
+  }
+
+  .tooltip-wrapper:hover .tooltip {
+    @apply opacity-100 scale-100 translate-y-0;
+  }
+
+  .prose-kumfora {
+    @apply text-kumfora-slate;
+  }
+  .prose-kumfora h2 { @apply text-heading-lg font-heading font-semibold text-kumfora-charcoal mt-8 mb-4; }
+  .prose-kumfora h3 { @apply text-heading-md font-heading font-semibold text-kumfora-charcoal mt-6 mb-3; }
+  .prose-kumfora p { @apply text-body text-kumfora-slate leading-relaxed my-4; }
+  .prose-kumfora ul { @apply list-disc list-inside space-y-2 my-4; }
+  .prose-kumfora li { @apply text-body text-kumfora-slate; }
+  .prose-kumfora strong { @apply font-semibold text-kumfora-charcoal; }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
