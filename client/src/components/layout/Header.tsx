@@ -77,7 +77,7 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
             className="flex items-center gap-3 shrink-0"
             aria-label="Kumfora Home"
           >
-            <Image src="/logo.png" alt="Kumfora" width={160} height={60} />
+            <Image src="/logo.png" alt="Kumfora" width={160} height={60} className="w-28 sm:w-36 md:w-40 h-auto" />
           </Link>
 
           <div className="hidden md:flex items-center gap-2">
@@ -110,17 +110,17 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
             </form>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-0.5 sm:gap-1">
             <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="md:hidden btn-ghost p-3"
+              className="md:hidden btn-ghost p-2.5 sm:p-3"
               aria-label="Search"
             >
               <Search className="w-5 h-5" />
             </button>
             <Link
               href="/wishlist"
-              className="tooltip-wrapper btn-ghost p-3"
+              className="tooltip-wrapper btn-ghost hidden sm:flex p-2.5 sm:p-3"
               aria-label="Wishlist"
             >
               <Heart className="w-5 h-5" />
@@ -130,7 +130,7 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
               <div className="relative group">
                 <Link
                   href="/account"
-                  className="tooltip-wrapper btn-ghost p-3 flex items-center gap-1"
+                  className="tooltip-wrapper btn-ghost p-2.5 sm:p-3 flex items-center gap-1"
                   aria-label="My Account"
                 >
                   <User className="w-5 h-5" />
@@ -155,7 +155,7 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
             ) : (
               <Link
                 href="/login"
-                className="tooltip-wrapper btn-ghost p-3"
+                className="tooltip-wrapper btn-ghost p-2.5 sm:p-3"
                 aria-label="Sign In"
               >
                 <User className="w-5 h-5" />
@@ -164,7 +164,7 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
             )}
             <button
               onClick={openCart}
-              className="tooltip-wrapper relative btn-ghost p-3"
+              className="tooltip-wrapper relative btn-ghost p-2.5 sm:p-3"
               aria-label={`Shopping cart${itemCount > 0 ? ` with ${itemCount} items` : ""}`}
             >
               <ShoppingBag className="w-5 h-5" />
@@ -177,7 +177,7 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
             </button>
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="md:hidden btn-ghost p-3"
+              className="md:hidden btn-ghost p-2.5 sm:p-3"
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" />
