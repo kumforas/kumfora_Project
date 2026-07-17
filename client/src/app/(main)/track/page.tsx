@@ -56,7 +56,7 @@ export default function TrackPage() {
 
   return (
     <main className="pt-16 min-h-screen bg-kumfora-cream/30">
-      <header className="bg-white border-b border-kumfora-lightGray/50 pt-32 pb-12">
+      <header className="bg-white border-b border-kumfora-lightGray/50 pt-16 sm:pt-32 pb-8 sm:pb-12">
         <div className="container-main max-w-3xl">
           <nav className="flex items-center gap-2 text-body-sm text-kumfora-gray mb-4" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-kumfora-hotPink">Home</Link>
@@ -68,8 +68,8 @@ export default function TrackPage() {
         </div>
       </header>
 
-      <div className="container-main py-12 max-w-xl">
-        <div className="card p-8">
+      <div className="container-main py-6 sm:py-12 max-w-xl">
+        <div className="card p-5 sm:p-8">
           <form onSubmit={handleTrack} className="space-y-4">
             <Input
               label="Order ID"
@@ -97,8 +97,8 @@ export default function TrackPage() {
             <div className="mt-8 space-y-6">
               <div className="divider" />
 
-              <div className="flex items-center justify-between">
-                <h2 className="text-heading-md font-display font-medium text-kumfora-charcoal">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h2 className="text-heading-sm sm:text-heading-md font-display font-medium text-kumfora-charcoal min-w-0 truncate">
                   Order {result.order_id}
                 </h2>
                 <span className={`px-3 py-1 rounded-full text-body-sm font-medium ${

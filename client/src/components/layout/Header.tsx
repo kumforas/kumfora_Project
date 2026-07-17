@@ -32,6 +32,15 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
     }
   }, [isSearchOpen]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+    return () => document.body.classList.remove('menu-open');
+  }, [isMenuOpen]);
+
   const navItems = [
     { label: "Shop", href: "/shop" },
     { label: "Our Story", href: "/about" },

@@ -64,7 +64,7 @@ export default function FAQsPage() {
   return (
     <main className="pt-16">
       {/* Hero */}
-      <section className="relative min-h-[40vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[30vh] sm:min-h-[40vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-kumfora-cream" aria-hidden="true" />
 
         <div className="container-main relative z-10 py-12 lg:py-16">
@@ -141,7 +141,7 @@ export default function FAQsPage() {
           </div>
 
           {/* Still need help */}
-          <div className="mt-16 text-center p-8 card">
+          <div className="mt-8 sm:mt-16 text-center p-6 sm:p-8 card">
             <h3 className="text-heading-lg font-display font-medium text-kumfora-charcoal mb-3">Still Have Questions?</h3>
             <p className="text-body text-kumfora-slate mb-6">Our care team is here to help — no question is too small.</p>
             <div className="flex flex-wrap items-center justify-center gap-4">

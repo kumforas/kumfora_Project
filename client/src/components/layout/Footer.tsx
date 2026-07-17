@@ -123,7 +123,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 lg:gap-12">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-16 sm:gap-10 lg:gap-12">
               {footerSections.map((section) => (
                 <nav key={section.title} aria-label={section.title}>
                   <h3 className="font-bold text-white mb-6 text-lg">
@@ -150,7 +150,7 @@ export function Footer() {
 
       <div className="border-t border-white/10 py-8">
         <div className="container-main">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
             <p className="text-body-sm text-kumfora-rose/60 text-center md:text-left">
               © {new Date().getFullYear()} Kumfora. All rights reserved.
             </p>

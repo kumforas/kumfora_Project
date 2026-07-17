@@ -16,7 +16,7 @@ export function Newsletter() {
   };
 
   return (
-    <section className="py-20 lg:py-15 bg-kumfora-charcoal" aria-labelledby="newsletter-heading">
+    <section className="py-12 lg:py-15 bg-kumfora-charcoal" aria-labelledby="newsletter-heading">
       <div className="container-main">
         <div className="max-w-2xl mx-auto text-center">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-kumfora-rose text-body-sm font-semibold mb-6">

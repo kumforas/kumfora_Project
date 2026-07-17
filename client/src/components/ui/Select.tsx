@@ -31,7 +31,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             ref={ref}
             id={selectId}
             className={cn(
-              'input appearance-none pr-10',
+              'input appearance-none pr-8 sm:pr-10',
               error && 'border-kumfora-rose focus:border-kumfora-rose focus:ring-kumfora-blush',
               className
             )}
@@ -50,8 +50,8 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
               </option>
             ))}
           </select>
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-kumfora-gray" aria-hidden="true">
-            <ChevronDown className="w-5 h-5" />
+          <div className="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 pointer-events-none text-kumfora-gray" aria-hidden="true">
+            <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
         </div>
         {error && (

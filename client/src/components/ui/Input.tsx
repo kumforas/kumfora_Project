@@ -27,8 +27,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className="relative">
           {leftIcon && (
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-kumfora-gray pointer-events-none" aria-hidden="true">
-              {leftIcon}
+            <div className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 text-kumfora-gray pointer-events-none" aria-hidden="true">
+              <span className="block w-4 h-4 sm:w-5 sm:h-5 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5">{leftIcon}</span>
             </div>
           )}
           <input
@@ -36,8 +36,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             className={cn(
               'input',
-              leftIcon && 'pl-10',
-              rightIcon && 'pr-10',
+              leftIcon && 'pl-8 sm:pl-10',
+              rightIcon && 'pr-8 sm:pr-10',
               error && 'border-kumfora-rose focus:border-kumfora-rose focus:ring-kumfora-blush',
               className
             )}
@@ -46,8 +46,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {rightIcon && (
-            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-kumfora-gray">
-              {rightIcon}
+            <div className="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 text-kumfora-gray">
+              <span className="block w-4 h-4 sm:w-5 sm:h-5 [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5">{rightIcon}</span>
             </div>
           )}
         </div>

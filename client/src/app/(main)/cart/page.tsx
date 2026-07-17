@@ -54,7 +54,7 @@ export default function CartPage() {
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center justify-between">
-              <h1 className="text-display-sm font-display font-medium text-kumfora-charcoal">
+              <h1 className="text-display-xs sm:text-display-sm font-display font-medium text-kumfora-charcoal">
                 Shopping Cart ({items.length})
               </h1>
               <Button variant="link" onClick={clearCart} size="sm">
@@ -78,8 +78,8 @@ export default function CartPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <aside className="sticky top-24 card p-6 space-y-6">
-              <h2 className="text-heading-lg font-display font-medium text-kumfora-charcoal">Order Summary</h2>
+            <aside className="lg:sticky lg:top-24 card p-4 sm:p-6 space-y-4 sm:space-y-6">
+              <h2 className="text-heading-md sm:text-heading-lg font-display font-medium text-kumfora-charcoal">Order Summary</h2>
 
               <div className="space-y-3 text-body">
                 <div className="flex justify-between text-kumfora-slate">
@@ -108,8 +108,8 @@ export default function CartPage() {
                 <span className="flex items-center gap-1"><RotateCcw className="w-3.5 h-3.5" /> 30-day returns</span>
               </div>
 
-              <Button onClick={handleCheckout} disabled={isCheckingOut} className="w-full" size="lg" leftIcon={<CreditCard className="w-5 h-5" />}>
-                {isCheckingOut ? 'Processing...' : `Proceed to Checkout — ${formatPrice(total)}`}
+              <Button onClick={handleCheckout} disabled={isCheckingOut} className="w-full whitespace-nowrap" size="lg" leftIcon={<CreditCard className="w-5 h-5" />}>
+                {isCheckingOut ? 'Processing...' : `Checkout — ${formatPrice(total)}`}
               </Button>
 
               <p className="text-caption text-center text-kumfora-gray">
@@ -137,9 +137,9 @@ function CartItem({
   const maxQty = product.stockCount || 10;
 
   return (
-    <li className="card p-4 flex gap-4">
+    <li className="card p-3 sm:p-4 flex gap-3 sm:gap-4">
       <Link href={`/product/${product.slug}`} className="shrink-0" aria-label={product.name}>
-        <div className="w-24 h-24 rounded-xl overflow-hidden bg-kumfora-blush relative">
+        <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-kumfora-blush relative">
           <Image src={product.thumbnail} alt="" fill className="object-cover" sizes="96px" />
         </div>
       </Link>

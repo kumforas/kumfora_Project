@@ -39,10 +39,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const sizeStyles = {
-      sm: 'px-3 py-1.5 text-body-sm',
-      md: 'px-5 py-2.5 text-body',
-      lg: 'px-6 py-3 text-body-lg',
-      xl: 'px-8 py-4 text-heading-sm',
+      sm: 'px-2.5 py-1.5 sm:px-3 text-body-sm',
+      md: 'px-4 py-2 sm:px-5 sm:py-2.5 text-body-sm sm:text-body',
+      lg: 'px-5 py-2.5 sm:px-6 sm:py-3 text-body sm:text-body-lg',
+      xl: 'px-6 py-3 sm:px-8 sm:py-4 text-body sm:text-heading-sm',
     };
 
     const widthStyles = fullWidth ? 'w-full' : '';

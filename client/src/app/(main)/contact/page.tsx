@@ -69,8 +69,8 @@ export default function ContactPage() {
   if (status === "success") {
     return (
       <main className="pt-16">
-        <section className="min-h-[70vh] flex items-center justify-center bg-kumfora-cream/30">
-          <div className="container-narrow text-center py-16">
+        <section className="min-h-[50vh] sm:min-h-[70vh] flex items-center justify-center bg-kumfora-cream/30">
+          <div className="container-narrow text-center py-10 sm:py-16">
             <div className="w-20 h-20 rounded-full bg-kumfora-blush flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="w-10 h-10 text-kumfora-hotPink" />
             </div>
@@ -102,7 +102,7 @@ export default function ContactPage() {
   return (
     <main className="pt-16">
       {/* Hero */}
-      <section className="relative min-h-[40vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[30vh] sm:min-h-[40vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-kumfora-cream" aria-hidden="true" />
 
         <div className="container-main relative z-10 py-12 lg:py-16">
@@ -173,11 +173,11 @@ export default function ContactPage() {
 
       {/* Contact Form */}
       <section
-        className="py-16 lg:py-24 bg-kumfora-cream/30"
+        className="py-10 sm:py-16 lg:py-24 bg-kumfora-cream/30"
         aria-labelledby="contact-form"
       >
         <div className="container-main">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
             <div>
               <h2
                 id="contact-form"
@@ -295,9 +295,9 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-1">
-              <div className="sticky top-24 card p-8 space-y-8">
+              <div className="lg:sticky lg:top-24 card p-5 sm:p-8 space-y-6 sm:space-y-8">
                 <div>
-                  <h3 className="text-heading-lg font-display font-medium text-kumfora-charcoal mb-4">
+                  <h3 className="text-heading-md sm:text-heading-lg font-display font-medium text-kumfora-charcoal mb-4">
                     Quick Answers
                   </h3>
                   <div className="space-y-4">
@@ -336,23 +336,23 @@ export default function ContactPage() {
                 </div>
 
                 <div className="pt-6 border-t border-kumfora-lightGray/50">
-                  <h3 className="text-heading-lg font-display font-medium text-kumfora-charcoal mb-4">
+                  <h3 className="text-heading-md sm:text-heading-lg font-display font-medium text-kumfora-charcoal mb-4">
                     Business Hours
                   </h3>
-                  <div className="space-y-3 text-body text-kumfora-slate">
-                    <div className="flex justify-between">
+                  <div className="space-y-3 text-body-sm sm:text-body text-kumfora-slate">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
                       <span>Monday - Friday</span>
                       <span className="font-medium">
                         10:00 AM - 6:00 PM IST
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
                       <span>Saturday</span>
                       <span className="font-medium">
                         10:00 AM - 2:00 PM IST
                       </span>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
                       <span>Sunday</span>
                       <span className="font-medium text-kumfora-gray">
                         Closed
@@ -372,7 +372,7 @@ export default function ContactPage() {
 
       {/* Newsletter */}
       <section
-        className="py-16 lg:py-24 bg-kumfora-charcoal"
+        className="py-10 sm:py-16 lg:py-24 bg-kumfora-charcoal"
         aria-labelledby="newsletter-heading"
       >
         <div className="container-main">

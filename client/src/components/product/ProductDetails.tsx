@@ -57,7 +57,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
       {/* Gallery & Info */}
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
         {/* Gallery */}
-        <div className="sticky top-24 lg:sticky">
+        <div className="lg:sticky lg:top-24">
           <ProductGallery images={product.images} alt={product.name} />
 
           {/* Trust Badges */}
@@ -226,13 +226,13 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Tabs */}
       <div className="border-t border-kumfora-lightGray/50 pt-8">
-        <div className="flex gap-1 bg-kumfora-cream rounded-xl p-1 mb-8" role="tablist" aria-label="Product information">
+        <div className="flex gap-1 bg-kumfora-cream rounded-xl p-1 mb-8 overflow-x-auto scrollbar-hide" role="tablist" aria-label="Product information">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
               className={cn(
-                'flex items-center gap-2 px-6 py-3 rounded-lg text-body font-medium transition-all',
+                'flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-lg text-body font-medium transition-all whitespace-nowrap shrink-0',
                 activeTab === tab.id
                   ? 'bg-white shadow-card text-kumfora-terracotta'
                   : 'text-kumfora-gray hover:text-kumfora-charcoal'

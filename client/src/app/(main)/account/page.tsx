@@ -164,10 +164,29 @@ export default function AccountPage() {
 
   return (
     <main className="pt-16 min-h-screen bg-kumfora-cream/30">
-      <div className="container-main py-8 lg:py-12">
+      <div className="container-main py-6 lg:py-12">
+        {/* Mobile Tab Bar */}
+        <div className="lg:hidden mb-6 flex gap-2 p-1 bg-kumfora-lightGray/50 rounded-xl">
+          {accountTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={cn(
+                'flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-body font-medium transition-all',
+                activeTab === tab.id
+                  ? 'bg-white shadow-sm text-kumfora-terracotta'
+                  : 'text-kumfora-slate hover:bg-white/50'
+              )}
+            >
+              <tab.icon className="w-4 h-4" aria-hidden="true" />
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
         <div className="grid lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <aside className="lg:col-span-1">
+          {/* Sidebar - desktop only */}
+          <aside className="hidden lg:block lg:col-span-1">
             <div className="card p-6 space-y-4 sticky top-24">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-xl bg-kumfora-blush flex items-center justify-center">

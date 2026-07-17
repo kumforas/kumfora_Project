@@ -74,7 +74,7 @@ export default function GuidePage() {
   return (
     <main className="pt-16">
       {/* Hero */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[35vh] sm:min-h-[50vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-kumfora-cream" aria-hidden="true" />
 
         <div className="container-main relative z-10 py-16 lg:py-20">
@@ -123,7 +123,7 @@ export default function GuidePage() {
       {/* Guide Sections */}
       <section className="py-16 lg:py-24 bg-kumfora-cream/30" aria-labelledby="guide-heading">
         <div className="container-main">
-          <div className="grid lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid lg:grid-cols-4 gap-6 lg:gap-12">
             {/* Sidebar Navigation */}
             <aside className="lg:col-span-1">
               <nav className="sticky top-24" aria-label="Guide sections">
@@ -149,7 +149,7 @@ export default function GuidePage() {
             </aside>
 
             {/* Content */}
-            <div className="lg:col-span-3 space-y-12">
+            <div className="lg:col-span-3 space-y-8 sm:space-y-12">
               {guideSections.map((section) => (
                 <article key={section.id} id={section.id} className="card p-6 lg:p-8">
                   <header className="mb-6">
@@ -206,14 +206,14 @@ export default function GuidePage() {
       {/* CTA */}
       <section className="py-16 lg:py-24 bg-kumfora-charcoal" aria-labelledby="guide-cta">
         <div className="container-main">
-          <div className="max-w-2xl mx-auto text-center card p-8 lg:p-12">
-            <h2 id="guide-cta" className="text-display-md font-display font-medium text-kumfora-white mb-4">
+          <div className="max-w-2xl mx-auto text-center card p-6 sm:p-8 lg:p-12">
+            <h2 id="guide-cta" className="text-display-sm sm:text-display-md font-display font-medium text-kumfora-white mb-4">
               Ready to Feel Confident Every Month?
             </h2>
-            <p className="text-body-lg text-kumfora-rose/70 mb-8">
+            <p className="text-body sm:text-body-lg text-kumfora-rose/70 mb-6 sm:mb-8">
               Shop pads designed for girls — ultra-soft, leak-proof, and eco-friendly.
             </p>
-            <Link href="/shop" className="btn-primary text-lg px-8 py-4 inline-flex">
+            <Link href="/shop" className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 inline-flex">
               Find My Perfect Pad
             </Link>
           </div>

@@ -33,7 +33,7 @@ export default function AboutPage() {
   return (
     <main className="pt-16">
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[40vh] sm:min-h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-kumfora-cream" aria-hidden="true" />
 
         <div className="container-main relative z-10 py-16 lg:py-24">
@@ -60,7 +60,7 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="py-16 lg:py-24 bg-white" aria-labelledby="mission-heading">
         <div className="container-main">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div>
               <h2 id="mission-heading" className="text-display-lg font-display font-medium text-kumfora-charcoal mb-6">
                 Our <span className="text-kumfora-terracotta">Mission</span>
@@ -97,7 +97,7 @@ export default function AboutPage() {
       {/* Values */}
       <section className="py-16 lg:py-24 bg-kumfora-cream/30" aria-labelledby="values-heading">
         <div className="container-main">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
             <h2 id="values-heading" className="text-display-lg font-display font-medium text-kumfora-charcoal mb-4">
               Our <span className="text-kumfora-terracotta">Values</span>
             </h2>
@@ -120,7 +120,7 @@ export default function AboutPage() {
       {/* Timeline */}
       <section className="py-16 lg:py-24 bg-white" aria-labelledby="journey-heading">
         <div className="container-main">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
             <h2 id="journey-heading" className="text-display-lg font-display font-medium text-kumfora-charcoal mb-4">
               Our <span className="text-kumfora-terracotta">Journey</span>
             </h2>
@@ -128,11 +128,11 @@ export default function AboutPage() {
           </div>
           <div className="max-w-3xl mx-auto">
             <ol className="relative space-y-8" role="list">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-kumfora-lightGray" aria-hidden="true" />
+              <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-1 bg-kumfora-lightGray" aria-hidden="true" />
               {milestones.map((milestone) => (
-                <li key={milestone.year} className="relative flex gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-white border-4 border-kumfora-terracotta flex items-center justify-center z-10 relative">
-                    <span className="text-body font-bold text-kumfora-terracotta">{milestone.year}</span>
+                <li key={milestone.year} className="relative flex gap-4 sm:gap-6">
+                  <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border-4 border-kumfora-terracotta flex items-center justify-center z-10 relative">
+                    <span className="text-body-sm sm:text-body font-bold text-kumfora-terracotta">{milestone.year}</span>
                   </div>
                   <div className="flex-1 pt-2">
                     <h3 className="text-heading-md font-display font-medium text-kumfora-charcoal">{milestone.title}</h3>
@@ -148,7 +148,7 @@ export default function AboutPage() {
       {/* Team */}
       <section className="py-16 lg:py-24 bg-kumfora-cream/30" aria-labelledby="team-heading">
         <div className="container-main">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
             <h2 id="team-heading" className="text-display-lg font-display font-medium text-kumfora-charcoal mb-4">
               Meet the <span className="text-kumfora-terracotta">Team</span>
             </h2>
@@ -172,7 +172,7 @@ export default function AboutPage() {
       {/* Trust */}
       <section className="py-16 lg:py-24 bg-kumfora-charcoal" aria-labelledby="trust-heading">
         <div className="container-main">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-16">
             <h2 id="trust-heading" className="text-display-lg font-display font-medium text-kumfora-white mb-4">
               Trusted by <span className="text-kumfora-coral">Families</span> Across India
             </h2>
@@ -199,19 +199,19 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-16 lg:py-24 bg-white" aria-labelledby="cta-heading">
         <div className="container-main">
-          <div className="max-w-2xl mx-auto text-center card p-8 lg:p-12">
-            <h2 id="cta-heading" className="text-display-md font-display font-medium text-kumfora-charcoal mb-4">
+          <div className="max-w-2xl mx-auto text-center card p-6 sm:p-8 lg:p-12">
+            <h2 id="cta-heading" className="text-display-sm sm:text-display-md font-display font-medium text-kumfora-charcoal mb-4">
               Ready to Experience the Difference?
             </h2>
-            <p className="text-body-lg text-kumfora-slate mb-8">
+            <p className="text-body sm:text-body-lg text-kumfora-slate mb-6 sm:mb-8">
               Join thousands of girls who&apos;ve discovered comfortable, confident period care.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              <Link href="/shop" className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4">
                 Shop Now
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link href="/contact" className="btn-secondary text-lg px-8 py-4">Have Questions?</Link>
+              <Link href="/contact" className="btn-secondary text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4">Have Questions?</Link>
             </div>
           </div>
         </div>

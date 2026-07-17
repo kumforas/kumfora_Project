@@ -3,9 +3,9 @@ import { Leaf, Heart, Sparkles, ArrowRight } from 'lucide-react';
 
 export function AboutPreview() {
   return (
-    <section className="py-20 lg:py-15 border-t-2 border-solid border-kumfora-blush" aria-labelledby="about-heading">
+    <section className="py-12 lg:py-15 border-t-2 border-solid border-kumfora-blush" aria-labelledby="about-heading">
       <div className="container-main">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
           <div>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-kumfora-blush text-kumfora-hotPink text-body-sm font-semibold mb-6">
               <Heart className="w-4 h-4" />

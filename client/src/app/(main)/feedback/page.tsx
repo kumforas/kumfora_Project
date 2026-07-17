@@ -44,8 +44,8 @@ export default function FeedbackPage() {
   if (status === "success") {
     return (
       <main className="pt-16">
-        <section className="min-h-[70vh] flex items-center justify-center bg-kumfora-cream/30">
-          <div className="container-narrow text-center py-16">
+        <section className="min-h-[50vh] sm:min-h-[70vh] flex items-center justify-center bg-kumfora-cream/30">
+          <div className="container-narrow text-center py-8 sm:py-16">
             <div className="w-20 h-20 rounded-full bg-kumfora-blush flex items-center justify-center mx-auto mb-6">
               <CheckCircle className="w-10 h-10 text-kumfora-hotPink" />
             </div>
@@ -93,7 +93,7 @@ export default function FeedbackPage() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-kumfora-cream/30">
+      <section className="py-8 sm:py-16 lg:py-24 bg-kumfora-cream/30">
         <div className="container-narrow">
           <div className="card p-8 sm:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">

@@ -7,8 +7,20 @@
     @apply border-kumfora-lightGray;
   }
 
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-padding-top: 5rem;
+  }
+
   body {
     @apply font-sans text-body text-kumfora-charcoal bg-kumfora-cream;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -100,8 +112,8 @@
   }
 
   .input {
-    @apply w-full px-4 py-3 text-body text-kumfora-charcoal bg-white
-           border-2 border-kumfora-rose/20 rounded-2xl
+    @apply w-full px-3 py-2.5 sm:px-4 sm:py-3 text-body-sm sm:text-body text-kumfora-charcoal bg-white
+           border-2 border-kumfora-rose/20 rounded-xl sm:rounded-2xl
            placeholder:text-kumfora-gray
            transition-colors duration-200
            focus:border-kumfora-pink focus:ring-4 focus:ring-kumfora-pink/10 focus:outline-none
@@ -177,5 +189,14 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .group .opacity-0 {
+    opacity: 1 !important;
+  }
+  .group > div > .bg-black\/0 {
+    background-color: rgba(0, 0, 0, 0.15) !important;
   }
 }

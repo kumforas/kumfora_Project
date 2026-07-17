@@ -137,7 +137,7 @@ function ShopContent() {
   return (
     <div className="min-h-screen bg-kumfora-cream/30">
       {/* Page Header */}
-      <header className="bg-white border-b border-kumfora-lightGray/50 pt-32 pb-12">
+      <header className="bg-white border-b border-kumfora-lightGray/50 pt-24 lg:pt-32 pb-8 lg:pb-12">
         <div className="container-main">
           <div className="max-w-3xl">
             <nav className="flex items-center gap-2 text-body-sm text-kumfora-gray mb-4" aria-label="Breadcrumb">
@@ -158,7 +158,7 @@ function ShopContent() {
       </header>
 
       {/* Main Content */}
-      <main className="container-main py-12">
+      <main className="container-main py-6 lg:py-12">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
           <aside className="lg:w-64 flex-shrink-0">
@@ -174,7 +174,10 @@ function ShopContent() {
                 <ChevronDown className={cn('w-5 h-5 transition-transform', isFilterOpen && 'rotate-180')} />
               </Button>
 
-              <div className={cn('space-y-6', isFilterOpen ? 'block' : 'lg:block hidden')}>
+              <div className={cn(
+                'overflow-hidden transition-all duration-300 ease-in-out',
+                isFilterOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0 lg:max-h-[800px] lg:opacity-100'
+              )}>
                 {/* Search */}
                 <form onSubmit={handleSearch} className="relative">
                   <Input
@@ -194,7 +197,10 @@ function ShopContent() {
                   <legend className="label">Category</legend>
                   <Select
                     value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    onChange={(e) => {
+                      setSelectedCategory(e.target.value);
+                      if (window.innerWidth < 1024) setIsFilterOpen(false);
+                    }}
                     options={CATEGORIES}
                     placeholder="All Categories"
                   />

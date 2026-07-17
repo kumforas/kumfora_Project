@@ -11,9 +11,9 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   const featured = products.slice(0, 4);
 
   return (
-    <section className="py-20 lg:py-15" aria-labelledby="featured-heading">
+    <section className="py-12 lg:py-15" aria-labelledby="featured-heading">
       <div className="container-main">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-16">
           <div>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-kumfora-blush text-kumfora-hotPink text-body-sm font-semibold mb-4">
               <Sparkles className="w-4 h-4" />
