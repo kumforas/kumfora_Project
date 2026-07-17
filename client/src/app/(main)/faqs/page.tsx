@@ -47,7 +47,7 @@ const faqs = {
     { q: 'I forgot my password. What do I do?', a: 'Click "Forgot Password" on the login page. Enter your email, and we\'ll send a reset link. The link expires in 1 hour for security.' },
     { q: 'Can I save multiple addresses?', a: 'Yes! Go to "Addresses" in your account to save home, work, or relative\'s addresses. Set one as default for faster checkout.' },
     { q: 'How do I view my order history?', a: 'All past orders are in "My Orders" in your account. You can view details, track shipments, download invoices, and reorder with one click.' },
-    { q: 'Is my payment info secure?', a: 'Absolutely. We use Razorpay (PCI DSS Level 1 certified) for all payments. We never store your full card details — only the last 4 digits for reference.' },
+    // { q: 'Is my payment info secure?', a: 'Absolutely. We use Razorpay (PCI DSS Level 1 certified) for all payments. We never store your full card details — only the last 4 digits for reference.' },
   ],
 };
 

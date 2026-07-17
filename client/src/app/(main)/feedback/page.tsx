@@ -1,17 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Send, Star, MessageSquareHeart, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  Send,
+  Star,
+  MessageSquareHeart,
+  CheckCircle,
+} from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Input";
 import { useFormSubmission } from "@/hooks/useFormSubmission";
 
 export default function FeedbackPage() {
-  const { status, error: submitError, warnings, submit, reset } = useFormSubmission("/api/feedback");
+  const {
+    status,
+    error: submitError,
+    warnings,
+    submit,
+    reset,
+  } = useFormSubmission("/api/feedback");
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = (): boolean => {
@@ -58,14 +74,23 @@ export default function FeedbackPage() {
                   Saved successfully, but some secondary syncs had issues:
                 </p>
                 <ul className="mt-2 text-caption text-kumfora-gray list-disc list-inside">
-                  {warnings.map((w, i) => <li key={i}>{w}</li>)}
+                  {warnings.map((w, i) => (
+                    <li key={i}>{w}</li>
+                  ))}
                 </ul>
               </div>
             )}
             <p className="text-body-lg text-kumfora-gray mb-8 max-w-md mx-auto">
-              Your feedback helps us improve Kumfora. We truly appreciate you taking the time to share your thoughts.
+              Your feedback helps us improve Kumfora. We truly appreciate you
+              taking the time to share your thoughts.
             </p>
-            <Button onClick={() => { reset(); setRating(0); setFormData({ name: "", email: "", message: "" }); }}>
+            <Button
+              onClick={() => {
+                reset();
+                setRating(0);
+                setFormData({ name: "", email: "", message: "" });
+              }}
+            >
               Submit Another Feedback
             </Button>
           </div>
@@ -78,7 +103,7 @@ export default function FeedbackPage() {
     <main className="pt-16">
       <section className="relative min-h-[40vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-kumfora-cream" aria-hidden="true" />
-        <div className="container-main relative z-10 py-12 lg:py-16">
+        <div className="container-main relative z-10 py-12 lg:py-16 lg:pb-8">
           <div className="max-w-3xl mx-auto text-center">
             <div className="w-16 h-16 rounded-2xl bg-kumfora-blush flex items-center justify-center mx-auto mb-6">
               <MessageSquareHeart className="w-8 h-8 text-kumfora-hotPink" />
@@ -93,7 +118,7 @@ export default function FeedbackPage() {
         </div>
       </section>
 
-      <section className="py-8 sm:py-16 lg:py-24 bg-kumfora-cream/30">
+      <section className="py-8 sm:py-12 lg:py-12 bg-kumfora-cream/30">
         <div className="container-narrow">
           <div className="card p-8 sm:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -120,14 +145,25 @@ export default function FeedbackPage() {
 
               <div>
                 <label className="label">
-                  Rating <span className="text-kumfora-rose ml-1" aria-hidden="true">*</span>
+                  Rating{" "}
+                  <span className="text-kumfora-rose ml-1" aria-hidden="true">
+                    *
+                  </span>
                 </label>
-                <div className="flex items-center gap-1" role="radiogroup" aria-label="Rating">
+                <div
+                  className="flex items-center gap-1"
+                  role="radiogroup"
+                  aria-label="Rating"
+                >
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
                       key={star}
                       type="button"
-                      onClick={() => { setRating(star); if (errors.rating) setErrors((prev) => ({ ...prev, rating: "" })); }}
+                      onClick={() => {
+                        setRating(star);
+                        if (errors.rating)
+                          setErrors((prev) => ({ ...prev, rating: "" }));
+                      }}
                       onMouseEnter={() => setHoveredRating(star)}
                       onMouseLeave={() => setHoveredRating(0)}
                       className="p-1 transition-transform hover:scale-110"
@@ -153,7 +189,12 @@ export default function FeedbackPage() {
                   )}
                 </div>
                 {errors.rating && (
-                  <p className="mt-1.5 text-body-sm text-kumfora-rose" role="alert">{errors.rating}</p>
+                  <p
+                    className="mt-1.5 text-body-sm text-kumfora-rose"
+                    role="alert"
+                  >
+                    {errors.rating}
+                  </p>
                 )}
               </div>
 
@@ -168,8 +209,13 @@ export default function FeedbackPage() {
               />
 
               {status === "error" && (
-                <div className="p-4 rounded-xl bg-kumfora-rose/10 border border-kumfora-rose/20" role="alert">
-                  <p className="text-body-sm text-kumfora-rose">{submitError}</p>
+                <div
+                  className="p-4 rounded-xl bg-kumfora-rose/10 border border-kumfora-rose/20"
+                  role="alert"
+                >
+                  <p className="text-body-sm text-kumfora-rose">
+                    {submitError}
+                  </p>
                 </div>
               )}
 

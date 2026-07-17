@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Sparkles, Truck, Gift, Tag } from 'lucide-react';
+import { Sparkles, Truck, Gift, Tag } from "lucide-react";
 
 const promos = [
   {
@@ -30,7 +30,7 @@ const promos = [
   },
   {
     icon: Tag,
-    text: "Refer a Friend & Earn ₹100 Off",
+    text: "Refer a Friend & Earn ₹50 Off",
     href: "/feedback",
   },
 ];

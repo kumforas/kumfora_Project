@@ -160,7 +160,7 @@ export function Footer() {
                 href="https://www.ascenera.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-kumfora-pink transition-colors"
+                className="hover:text-kumfora-pink transition-colors -ml-1 font-bold"
               >
                 Ascenera
               </Link>

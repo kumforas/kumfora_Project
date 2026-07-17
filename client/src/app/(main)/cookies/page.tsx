@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function CookiesPage() {
   return (
     <main className="pt-16 min-h-screen bg-kumfora-cream/30">
-      <header className="bg-white border-b border-kumfora-lightGray/50 pt-32 pb-12">
+      <header className="bg-white border-b border-kumfora-lightGray/50 pt-16 pb-12">
         <div className="container-main max-w-3xl">
           <nav className="flex items-center gap-2 text-body-sm text-kumfora-gray mb-4" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-kumfora-hotPink">Home</Link>
@@ -13,7 +13,7 @@ export default function CookiesPage() {
             <span className="text-kumfora-charcoal font-medium" aria-current="page">Cookie Policy</span>
           </nav>
           <h1 className="text-display-lg font-display font-medium text-kumfora-charcoal">Cookie Policy</h1>
-          <p className="text-body text-kumfora-gray mt-2">Last updated: January 2024</p>
+          <p className="text-body text-kumfora-gray mt-2">Last updated: July 2026</p>
         </div>
       </header>
 

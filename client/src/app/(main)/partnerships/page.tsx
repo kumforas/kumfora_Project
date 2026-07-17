@@ -5,8 +5,8 @@ import { Mail, Handshake } from 'lucide-react';
 
 export default function PartnershipsPage() {
   return (
-    <main className="pt-16 min-h-screen bg-kumfora-cream/30">
-      <header className="bg-white border-b border-kumfora-lightGray/50 pt-32 pb-12">
+    <main className="pt-12 min-h-screen bg-kumfora-cream/30">
+      <header className="bg-white border-b border-kumfora-lightGray/50 pt-16 pb-12">
         <div className="container-main max-w-3xl">
           <nav className="flex items-center gap-2 text-body-sm text-kumfora-gray mb-4" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-kumfora-hotPink">Home</Link>

@@ -137,7 +137,7 @@ function ShopContent() {
   return (
     <div className="min-h-screen bg-kumfora-cream/30">
       {/* Page Header */}
-      <header className="bg-white border-b border-kumfora-lightGray/50 pt-24 lg:pt-32 pb-8 lg:pb-12">
+      <header className="bg-white border-b border-kumfora-lightGray/50 pt-24 lg:pt-30 pb-8 lg:pb-12">
         <div className="container-main">
           <div className="max-w-3xl">
             <nav className="flex items-center gap-2 text-body-sm text-kumfora-gray mb-4" aria-label="Breadcrumb">
