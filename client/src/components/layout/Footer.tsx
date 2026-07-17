@@ -4,8 +4,6 @@ import Link from "next/link";
 import {
   Facebook,
   Instagram,
-  Youtube,
-  Twitter,
   Truck,
   Shield,
   RotateCcw,
@@ -54,10 +52,12 @@ const footerSections = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+  {
+    icon: Instagram,
+    href: "https://instagram.com/kumfora",
+    label: "Instagram",
+  },
+  { icon: Facebook, href: "https://facebook.com/kumfora", label: "Facebook" },
 ];
 
 const trustBadges = [
