@@ -110,14 +110,14 @@ export function ProductGallery({
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center text-kumfora-charcoal hover:bg-kumfora-blush shadow-card opacity-0 group-hover:opacity-100 transition-opacity z-20"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center text-kumfora-charcoal hover:bg-kumfora-blush shadow-card opacity-0 group-hover:opacity-100 transition-opacity z-40"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center text-kumfora-charcoal hover:bg-kumfora-blush shadow-card opacity-0 group-hover:opacity-100 transition-opacity z-20"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center text-kumfora-charcoal hover:bg-kumfora-blush shadow-card opacity-0 group-hover:opacity-100 transition-opacity z-40"
               aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5" />
@@ -127,7 +127,7 @@ export function ProductGallery({
 
         {images.length > 1 && (
           <div
-            className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20"
+            className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-40"
             role="tablist"
             aria-label="Product images"
           >

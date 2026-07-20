@@ -1,6 +1,12 @@
 import type { Product } from "@/types";
-import product1Img from "@/assets/product-images/product1.png";
-import product2Img from "@/assets/product-images/product2.png";
+import product_1_1 from "@/assets/product-images/product-1/product-1_1.jpeg";
+import product_1_2 from "@/assets/product-images/product-1/product-1_2.jpeg";
+import product_1_3 from "@/assets/product-images/product-1/product-1_3.jpeg";
+import product_1_4 from "@/assets/product-images/product-1/product-1_4.jpeg";
+import product_2_1 from "@/assets/product-images/product-2/product-2_1.jpeg";
+import product_2_2 from "@/assets/product-images/product-2/product-2_2.jpeg";
+import product_2_3 from "@/assets/product-images/product-2/product-2_3.jpeg";
+import product_2_4 from "@/assets/product-images/product-2/product-2_4.jpeg";
 
 export const products: Product[] = [
   {
@@ -14,11 +20,12 @@ export const products: Product[] = [
     price: 110.0,
     originalPrice: 120.0,
     images: [
-      product1Img.src,
-      "https://images.unsplash.com/photo-1712842956495-473e00ae9ad8?w=800&q=80",
-      "https://images.unsplash.com/photo-1603712509484-0a5004b4663e?w=800&q=80",
+      product_1_1.src,
+      product_1_2.src,
+      product_1_3.src,
+      product_1_4.src,
     ],
-    thumbnail: product1Img.src,
+    thumbnail: product_1_1.src,
     features: [
       "Ultra-thin 3mm core",
       "Breathable cotton-like top sheet",
@@ -58,11 +65,12 @@ export const products: Product[] = [
     price: 40.0,
     originalPrice: 50.0,
     images: [
-      product2Img.src,
-      "https://images.unsplash.com/photo-1764312270936-adb508140a6d?w=800&q=80",
-      "https://images.unsplash.com/photo-1603712509484-0a5004b4663e?w=800&q=80",
+      product_2_1.src,
+      product_2_2.src,
+      product_2_3.src,
+      product_2_4.src,
     ],
-    thumbnail: product2Img.src,
+    thumbnail: product_2_1.src,
     features: [
       "Extra-long 320mm length",
       "Super absorbent core",
