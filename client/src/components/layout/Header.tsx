@@ -47,6 +47,7 @@ export function Header({ isPromoHidden }: { isPromoHidden: boolean }) {
     { label: "Period Guide", href: "/guide" },
     { label: "FAQs", href: "/faqs" },
     { label: "Feedback", href: "/feedback" },
+    { label: "Contact Us", href: "/contact" },
   ];
 
   const handleSearch = (e: React.FormEvent) => {

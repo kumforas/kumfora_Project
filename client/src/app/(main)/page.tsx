@@ -1,17 +1,18 @@
-import { Shield, Leaf, Sparkles, Heart } from 'lucide-react'
+import { Shield, Leaf, Sparkles, Heart } from "lucide-react";
 
-import { Metadata } from 'next';
-import { Hero } from '@/components/home/Hero';
-import Features from '@/components/home/Features';
-import { FeaturedProducts } from '@/components/home/FeaturedProducts';
-import { TrustStrip } from '@/components/home/TrustStrip';
-import { AboutPreview } from '@/components/home/AboutPreview';
-import { Newsletter } from '@/components/home/Newsletter';
-import { getAllProducts } from '@/data/products';
+import { Metadata } from "next";
+import { Hero } from "@/components/home/Hero";
+import Features from "@/components/home/Features";
+import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import { AboutPreview } from "@/components/home/AboutPreview";
+import { Newsletter } from "@/components/home/Newsletter";
+import { getAllProducts } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: 'Comfortable Period Care for Girls',
-  description: 'Discover Kumfora\'s premium period pads designed for girls. Ultra-soft, leak-proof, and eco-friendly. Free shipping on orders over ₹499.',
+  title: "Comfortable Period Care for Girls",
+  description:
+    "Discover Kumfora's premium period pads designed for girls. Ultra-soft, leak-proof, and eco-friendly. Free shipping on orders over ₹499.",
 };
 
 export default async function HomePage() {

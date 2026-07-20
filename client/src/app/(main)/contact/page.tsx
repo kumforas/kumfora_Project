@@ -19,7 +19,13 @@ import { Textarea } from "@/components/ui/Input";
 import { useFormSubmission } from "@/hooks/useFormSubmission";
 
 export default function ContactPage() {
-  const { status, error: submitError, warnings, submit, reset } = useFormSubmission("/api/contact");
+  const {
+    status,
+    error: submitError,
+    warnings,
+    submit,
+    reset,
+  } = useFormSubmission("/api/contact");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -33,11 +39,14 @@ export default function ContactPage() {
 
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First name is required";
     if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Please enter a valid email";
-    if (formData.phone && !/^\d{10}$/.test(formData.phone)) newErrors.phone = "Phone must be exactly 10 digits";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      newErrors.email = "Please enter a valid email";
+    if (formData.phone && !/^\d{10}$/.test(formData.phone))
+      newErrors.phone = "Phone must be exactly 10 digits";
     if (!formData.topic) newErrors.topic = "Please select a topic";
     if (!formData.message.trim()) newErrors.message = "Message is required";
     setErrors(newErrors);
@@ -57,7 +66,15 @@ export default function ContactPage() {
       message: formData.message,
     });
     if (ok) {
-      setFormData({ firstName: "", lastName: "", email: "", phone: "", orderNumber: "", topic: "", message: "" });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        orderNumber: "",
+        topic: "",
+        message: "",
+      });
     }
   };
 
@@ -83,16 +100,17 @@ export default function ContactPage() {
                   Saved successfully, but some secondary syncs had issues:
                 </p>
                 <ul className="mt-2 text-caption text-kumfora-gray list-disc list-inside">
-                  {warnings.map((w, i) => <li key={i}>{w}</li>)}
+                  {warnings.map((w, i) => (
+                    <li key={i}>{w}</li>
+                  ))}
                 </ul>
               </div>
             )}
             <p className="text-body-lg text-kumfora-gray mb-8 max-w-md mx-auto">
-              Thank you for reaching out! Our care team will get back to you within 24 hours.
+              Thank you for reaching out! Our care team will get back to you
+              within 24 hours.
             </p>
-            <Button onClick={() => reset()}>
-              Send Another Message
-            </Button>
+            <Button onClick={() => reset()}>Send Another Message</Button>
           </div>
         </section>
       </main>
@@ -133,7 +151,7 @@ export default function ContactPage() {
               {
                 icon: Phone,
                 title: "Call Us",
-                desc: "+91 7080163349",
+                desc: "+91 7355413565",
                 action: "Mon-Fri, 10 AM - 6 PM IST",
               },
               {
@@ -228,7 +246,12 @@ export default function ContactPage() {
                   placeholder="9876543210"
                   leftIcon={<Phone className="w-5 h-5" />}
                   value={formData.phone}
-                  onChange={(e) => handleChange("phone", e.target.value.replace(/\D/g, "").slice(0, 10))}
+                  onChange={(e) =>
+                    handleChange(
+                      "phone",
+                      e.target.value.replace(/\D/g, "").slice(0, 10),
+                    )
+                  }
                   error={errors.phone}
                 />
                 <Input
@@ -254,7 +277,12 @@ export default function ContactPage() {
                     <option value="other">Other</option>
                   </select>
                   {errors.topic && (
-                    <p className="mt-1.5 text-body-sm text-kumfora-rose" role="alert">{errors.topic}</p>
+                    <p
+                      className="mt-1.5 text-body-sm text-kumfora-rose"
+                      role="alert"
+                    >
+                      {errors.topic}
+                    </p>
                   )}
                 </div>
                 <Textarea
@@ -268,16 +296,25 @@ export default function ContactPage() {
                 />
 
                 {status === "error" && (
-                  <div className="p-4 rounded-xl bg-kumfora-rose/10 border border-kumfora-rose/20" role="alert">
-                    <p className="text-body-sm text-kumfora-rose">{submitError}</p>
+                  <div
+                    className="p-4 rounded-xl bg-kumfora-rose/10 border border-kumfora-rose/20"
+                    role="alert"
+                  >
+                    <p className="text-body-sm text-kumfora-rose">
+                      {submitError}
+                    </p>
                   </div>
                 )}
 
                 {warnings.length > 0 && (
                   <div className="p-4 rounded-xl bg-kumfora-gold/10 border border-kumfora-gold/20">
-                    <p className="text-body-sm text-kumfora-charcoal mb-1">Message saved, but some secondary syncs had issues:</p>
+                    <p className="text-body-sm text-kumfora-charcoal mb-1">
+                      Message saved, but some secondary syncs had issues:
+                    </p>
                     <ul className="text-caption text-kumfora-gray list-disc list-inside">
-                      {warnings.map((w, i) => <li key={i}>{w}</li>)}
+                      {warnings.map((w, i) => (
+                        <li key={i}>{w}</li>
+                      ))}
                     </ul>
                   </div>
                 )}
@@ -403,7 +440,11 @@ export default function ContactPage() {
 }
 
 function ContactNewsletter() {
-  const { status, error: submitError, submit } = useFormSubmission("/api/newsletter");
+  const {
+    status,
+    error: submitError,
+    submit,
+  } = useFormSubmission("/api/newsletter");
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -440,7 +481,9 @@ function ContactNewsletter() {
         {status === "success" ? "Subscribed!" : "Subscribe"}
       </Button>
       {status === "error" && (
-        <p className="text-body-sm text-kumfora-rose sm:col-span-2">{submitError}</p>
+        <p className="text-body-sm text-kumfora-rose sm:col-span-2">
+          {submitError}
+        </p>
       )}
     </form>
   );
