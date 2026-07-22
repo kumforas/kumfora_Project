@@ -57,7 +57,7 @@ export const products: Product[] = [
       {
         name: "Priya S.",
         rating: 5,
-        date: "2024-01-15",
+        date: "2026-07-17",
         title: "Best pads for my daughter!",
         text: "I was looking for an affordable sanitary pad with good quality, and Kumfora met my expectations. It fits well and keeps me comfortable throughout the day.",
         verified: true,
@@ -65,7 +65,7 @@ export const products: Product[] = [
       {
         name: "Anita M.",
         rating: 5,
-        date: "2024-01-10",
+        date: "2026-07-20",
         title: "Great quality",
         text: "The pad absorbs well and doesn't feel bulky. I also liked that it was gentle on my skin. Overall, a good experience.",
         verified: true,
@@ -73,7 +73,7 @@ export const products: Product[] = [
       {
         name: "Kavya R.",
         rating: 4,
-        date: "2024-01-05",
+        date: "2026-07-22",
         title: "Good product",
         text: "The cotton-soft surface feels gentle on my skin. It stays comfortable for hours and provides reliable protection. Definitely worth trying.",
         verified: true,
@@ -150,7 +150,7 @@ export const products: Product[] = [
       {
         name: "Meera K.",
         rating: 5,
-        date: "2024-02-20",
+        date: "2026-07-15",
         title: "No more midnight leaks!",
         text: "I've been using Kumfora for a few cycles now, and it's very comfortable. The absorbency is good, and I don't feel any irritation. It gives me confidence even on busy days.",
         verified: true,
@@ -158,7 +158,7 @@ export const products: Product[] = [
       {
         name: "Sneha P.",
         rating: 5,
-        date: "2024-02-14",
+        date: "2026-07-16",
         title: "Finally sleeping through the night",
         text: "The cotton-soft surface feels gentle on my skin. It stays comfortable for hours and provides reliable protection. Definitely worth trying.",
         verified: true,
@@ -166,7 +166,7 @@ export const products: Product[] = [
       {
         name: "Priyanka L.",
         rating: 5,
-        date: "2024-02-08",
+        date: "2026-07-15",
         title: "Great protection for overnight use",
         text: "Comfortable, soft, and reliable. I felt secure while traveling and during long work hours. I'm happy with the product.",
         verified: true,
