@@ -157,7 +157,7 @@ export default function ContactPage() {
               {
                 icon: MapPin,
                 title: "Write to Us",
-                desc: "Fatehpur, UP (212655), India",
+                desc: "Fatehpur, UP (212601), India",
                 action: "We love handwritten letters!",
               },
             ].map((item) => (
