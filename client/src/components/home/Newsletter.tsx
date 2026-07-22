@@ -56,7 +56,7 @@ export function Newsletter() {
               {status === 'success' ? (
                 <>
                   <CheckCircle className="w-5 h-5" />
-                  Subscribed!
+                  Subscribed!!
                 </>
               ) : (
                 'Subscribe'
