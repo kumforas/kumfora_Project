@@ -20,6 +20,8 @@ export interface Product {
   badges: string[];
   rating: number;
   reviewCount: number;
+  reviews: { name: string; rating: number; date: string; title: string; text: string; verified: boolean }[];
+  faqs: { q: string; a: string }[];
 }
 
 export interface CartItem {

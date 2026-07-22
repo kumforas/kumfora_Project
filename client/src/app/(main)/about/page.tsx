@@ -31,7 +31,7 @@ const values = [
   {
     icon: Leaf,
     title: "Planet Conscious",
-    desc: "Biodegradable wrappers, sustainable sourcing, and minimal packaging waste.",
+    desc: "Biodegradable pads, sustainable sourcing, and minimal packaging waste.",
   },
   {
     icon: Sparkles,
@@ -42,34 +42,19 @@ const values = [
 
 const milestones = [
   {
-    year: "2022",
-    title: "The Spark",
-    desc: "Founder notices her daughter struggling with uncomfortable, adult-sized pads.",
-  },
-  {
-    year: "2023",
-    title: "Research & Development",
-    desc: "18 months of testing with pediatric dermatologists and 200+ girls across India.",
-  },
-  {
-    year: "2023",
-    title: "First Prototype",
-    desc: "Ultra-thin, leak-guard design with biodegradable wrapper - tested and approved.",
-  },
-  {
-    year: "2024",
-    title: "Kumfora Launches",
-    desc: "Day and Night pads available nationwide. 500+ families join in the first month.",
-  },
-  {
     year: "2025",
-    title: "Growing Community",
-    desc: "Period Guide launched. Schools partnership program begins. 5000+ happy customers.",
+    title: "The Idea",
+    desc: "As a woman, I realized how difficult it was to find sanitary pads that were truly comfortable, skin-friendly, and affordable. That inspired me to create Kumfora.",
   },
   {
-    year: "2026",
-    title: "Expanding Impact",
-    desc: "Expanding reach to more schools and communities across the country.",
+    year: "Early 2026",
+    title: "Product Development",
+    desc: "Worked closely with trusted manufacturing partners to develop high-quality cotton-based sanitary pads with excellent absorbency, soft comfort, and rash-free protection.",
+  },
+  {
+    year: "July 2026",
+    title: "Kumfora Launches",
+    desc: "Kumfora officially launched with a mission to provide women with comfortable, reliable, and affordable menstrual care across India.",
   },
 ];
 
@@ -132,7 +117,7 @@ export default function AboutPage() {
 
       {/* Mission */}
       <section
-        className="py-12 lg:py-16 bg-white"
+        className="py-12 lg:py-16 bg-red-100/50"
         aria-labelledby="mission-heading"
       >
         <div className="container-main">
@@ -145,18 +130,19 @@ export default function AboutPage() {
                 Our <span className="text-kumfora-terracotta">Mission</span>
               </h2>
               <p className="text-body-lg text-kumfora-slate mb-6">
-                Every girl deserves period care that fits her body, her
-                lifestyle, and her confidence. Not hand-me-downs from adult
-                products. Not one-size-fits-all compromises.
+                We believe every woman deserves confidence, comfort, and peace
+                of mind during her period. We are committed to delivering
+                quality feminine hygiene products that women can trust every
+                day.
               </p>
-              <p className="text-body text-kumfora-gray mb-6">
+              {/* <p className="text-body text-kumfora-gray mb-6">
                 We&apos;re building the period brand we wished existed when we
                 were young — one that celebrates this milestone instead of
                 hiding it. Products that make girls feel capable, not
                 self-conscious.
-              </p>
+              </p> */}
               <p className="text-body text-kumfora-gray">
-                From the absorbency core to the biodegradable wrapper, every
+                From the absorbency core to the biodegradable pads, every
                 decision is made with her comfort and future in mind.
               </p>
             </div>
@@ -235,13 +221,13 @@ export default function AboutPage() {
               Our <span className="text-kumfora-terracotta">Journey</span>
             </h2>
             <p className="text-body-lg text-kumfora-slate">
-              From a mother&apos;s observation to thousands of confident girls.
+              From a dream to empowering women with comfort and confidence.
             </p>
           </div>
           <div className="max-w-3xl mx-auto">
             <ol className="relative space-y-8" role="list">
               <div
-                className="absolute left-6 sm:left-8 top-0 bottom-0 w-1 bg-kumfora-lightGray"
+                className="absolute left-8 sm:left-10 top-0 bottom-0 w-1 bg-kumfora-lightGray"
                 aria-hidden="true"
               />
               {milestones.map((milestone) => (
@@ -249,8 +235,8 @@ export default function AboutPage() {
                   key={milestone.year}
                   className="relative flex gap-4 sm:gap-6"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border-4 border-kumfora-terracotta flex items-center justify-center z-10 relative">
-                    <span className="text-body-sm sm:text-body font-bold text-kumfora-terracotta">
+                  <div className="flex-shrink-0 w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-white border-4 border-kumfora-terracotta flex items-center justify-center z-10 relative">
+                    <span className="text-sm sm:text-md font-bold text-kumfora-terracotta leading-tight text-center px-1  whitespace-wrap">
                       {milestone.year}
                     </span>
                   </div>

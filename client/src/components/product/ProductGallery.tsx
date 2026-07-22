@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +23,15 @@ export function ProductGallery({
   const [lensPosition, setLensPosition] = useState({ x: 0, y: 0 });
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    setIsLargeScreen(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsLargeScreen(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   const LENS_SIZE = 160;
   const ZOOM = 2.5;
@@ -55,6 +64,7 @@ export function ProductGallery({
   };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isLargeScreen) return;
     const rect = e.currentTarget.getBoundingClientRect();
     setContainerSize({ width: rect.width, height: rect.height });
     setIsZoomed(true);
@@ -76,7 +86,7 @@ export function ProductGallery({
     <div className="relative group" onKeyDown={handleKeyDown}>
       <div
         ref={containerRef}
-        className="relative aspect-square rounded-2xl overflow-hidden bg-kumfora-cream cursor-none"
+        className="relative aspect-square rounded-2xl overflow-hidden bg-kumfora-cream lg:cursor-none"
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}

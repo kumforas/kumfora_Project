@@ -378,23 +378,23 @@ export default function ContactPage() {
                   </h3>
                   <div className="space-y-3 text-body-sm sm:text-body text-kumfora-slate">
                     <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
-                      <span>Monday - Friday</span>
+                      <span>All day</span>
                       <span className="font-medium">
-                        10:00 AM - 6:00 PM IST
+                        10:00 AM - 07:00 PM IST
                       </span>
                     </div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
-                      <span>Saturday</span>
+                    {/* <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
+                      <span>Sunday</span>
                       <span className="font-medium">
-                        10:00 AM - 2:00 PM IST
+                        10:00 AM - 07:00 PM IST
                       </span>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
+                    </div> */}
+                    {/* <div className="flex flex-col sm:flex-row sm:justify-between gap-0.5 sm:gap-0">
                       <span>Sunday</span>
                       <span className="font-medium text-kumfora-gray">
                         Closed
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                   <p className="text-body-sm text-kumfora-gray mt-4">
                     Emails received outside business hours will be answered the

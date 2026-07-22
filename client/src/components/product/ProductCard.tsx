@@ -116,7 +116,9 @@ export function ProductCard({
 
             <div className="absolute top-2 left-2 flex flex-col gap-1">
               {discount > 0 && (
-                <span className="badge-primary text-[10px]">{discount}% OFF</span>
+                <span className="badge-primary text-[10px]">
+                  {discount}% OFF
+                </span>
               )}
               {product.badges.includes("Best Seller") && (
                 <span className="badge bg-kumfora-gold text-white text-[10px]">
